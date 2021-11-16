@@ -18,17 +18,5 @@ public class IndexController {
         return "index";
     }
 
-    @PostMapping("PostArticle")
-    public String PostArticle(@RequestParam String article,
-                              @RequestParam String title,
-                              @RequestParam String group,
-                              Model model) {
 
-        System.out.println(article);
-        article art = new article();
-        art.setContent(article);
-        model.addAttribute("art", art);
-        return "showArticle";
-
-    }
 }
