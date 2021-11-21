@@ -20,7 +20,6 @@ import java.util.Date;
  * @since 2021-11-15
  */
 @Controller
-@RequestMapping("/blog")
 public class ArticleController {
 
     @Autowired
@@ -29,6 +28,11 @@ public class ArticleController {
     @GetMapping("article")
     public String getArticle() {
         return "MarkDown";
+    }
+
+    @GetMapping("new")
+    public String gArticle() {
+        return "newTest";
     }
 
     @GetMapping("PostArticle")
