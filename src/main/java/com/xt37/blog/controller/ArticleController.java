@@ -1,6 +1,7 @@
 package com.xt37.blog.controller;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.xt37.blog.entity.Article;
 import com.xt37.blog.mapper.ArticleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.crypto.Data;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,14 +28,10 @@ public class ArticleController {
     private ArticleMapper articleMapper;
 
     @GetMapping("article")
-    public String getArticle() {
+    public String writeArticle() {
         return "MarkDown";
     }
 
-    @GetMapping("new")
-    public String gArticle() {
-        return "newTest";
-    }
 
     @GetMapping("PostArticle")
     public String PostToHtml() {
@@ -45,21 +43,33 @@ public class ArticleController {
                               @RequestParam String title,
                               @RequestParam String group,
                               Model model) {
-
         System.out.println(content);
         Article article = new Article();
         article.setContent(content);
-        article.setPart(group);
+        article.setGroupBy(group);
         article.setTitle(title);
 
         int insert = articleMapper.insert(article);
         if (insert != 0) {
             model.addAttribute("article", article);
             return "showArticle";
-        }else {
+        } else {
             return "index";
         }
     }
+
+    @GetMapping("detailArticle/{id}")
+    public String getArticle(
+            @PathVariable String id,
+            Model model) {
+        Article article = articleMapper.selectById(id);
+
+
+        model.addAttribute("article", article);
+
+        return "showArticle";
+    }
+
 
 }
 

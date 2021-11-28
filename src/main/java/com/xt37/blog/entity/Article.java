@@ -11,7 +11,7 @@ import java.util.Date;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author xt37
@@ -27,17 +27,20 @@ public class Article implements Serializable {
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
+    //一句话描述
+    private String description;
+
     private String content;
 
     private String title;
 
-    private String part;
+    private String groupBy;
 
     private Integer status;
 
-    private Integer floow;
+    private Integer follow;
 
-    private Date gmtCreate;
+    private String gmtCreate;
 
     private Date gmtModify;
 

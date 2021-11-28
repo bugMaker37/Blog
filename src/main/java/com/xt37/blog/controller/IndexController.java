@@ -1,7 +1,9 @@
 package com.xt37.blog.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xt37.blog.entity.Article;
 import com.xt37.blog.mapper.ArticleMapper;
 import com.xt37.blog.utils.HttpClientUtils;
@@ -51,10 +53,9 @@ public class IndexController {
         HashMap<String, String> jsonType = new HashMap<>();
         jsonType.put("type", "json");
         String today = HttpClientUtils.doGet(TODAY, jsonType);
-        JSONObject jsonObject = new JSONObject();
-        System.out.println(today);
         JSONObject parseObject = JSONObject.parseObject(today);
-        parseObject.remove(parseObject.size() - 1);
+        JSONArray result = parseObject.getJSONArray("result");
+        result.remove(result.size()-1);
 
         model.addAttribute("articles", articles);
         model.addAttribute("today", parseObject);
