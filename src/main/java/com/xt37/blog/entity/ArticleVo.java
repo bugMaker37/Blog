@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Article implements Serializable {
+public class ArticleVo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,11 @@ public class Article implements Serializable {
 
     private String title;
 
+    //分组
     private String groupBy;
+
+    //分组选择
+    private String selectGroup;
 
     private Integer status;
 

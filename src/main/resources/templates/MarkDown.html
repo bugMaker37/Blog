@@ -17,24 +17,42 @@
 <body>
 <div th:insert="navigation :: nav"></div>
 <form style="margin-top: 20px; " action="PostArticle" method="post">
-    <div class="input-group mb-3"
-         style="width: 850px;margin-left: 95px; box-shadow: 0 2px 5px 0 rgb(177 177 177 / 16%), 0 2px 10px 0 rgb(177 177 177 / 12%);">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">标题</span>
+    <div style=" width: 850px;margin-left: 95px; margin-bottom: 10px;">
+        <div class="input-articlegroup mb-3">
+            <div class="input-articlegroup-prepend">
+                <span class="input-articlegroup-text" id="inputGroup-sizing-default">标题</span>
+            </div>
+            <input style="border-radius: 15px;margin-top: 10px;" type="text" name="title" class="form-control"
+                   aria-label="Sizing example input"
+                   aria-describedby="inputGroup-sizing-default">
         </div>
-        <input type="text" name="title" class="form-control" aria-label="Sizing example input"
-               aria-describedby="inputGroup-sizing-default">
-        <!-- Example single danger button -->
-        <select style="border-radius: 5px;margin-left: 10px;" class="input-group-prepend" name="group">
-            <option>分组选择</option>
-            <option>分组选择</option>
-            <option>分组选择</option>
-        </select>
+        <div class="input-articlegroup mb-3">
+            <span class="input-articlegroup-text">描述</span>
+            <input style="border-radius: 15px;margin: 10px 0px 0px 0px;" type="text" name="description"
+                   class="form-control" aria-label="Sizing example input"
+                   aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div>
+            <div class="input-articlegroup-prepend">
+                <span class="input-articlegroup-text">分组</span>
+            </div>
+            <!--选择分组 可以受手动输入也可以进行选择-->
+            <input name="groupBy" style="border-radius: 15px;width: 300px;display: inline;" type="text"
+                   class="form-control" aria-label="Sizing example input"
+                   aria-describedby="inputGroup-sizing-default">
+            <!--已有分组选择下拉框 -->
+            <select name="selectGroup" id="selectGroup" style="width: 200px;border-radius: 15px;"
+                    class="custom-select mr-sm-2">
+            </select>
+            <input type="date" class="input-articlegroup-text"
+                   style="margin-left: 20px;border-radius: 5px;display: inline;"
+                   name="gmtCreate">
+        </div>
     </div>
 
-    <div id="deditor"
+    <div id="editor"
          style="border-radius:10px; box-shadow: 0 2px 5px 0 rgb(177 177 177 / 16%), 0 2px 10px 0 rgb(177 177 177 / 12%);">
-        <textarea name="content" style="display:none;">### Hello Editor.md !</textarea>
+        <textarea name="content" style="display:none;"></textarea>
     </div>
     <div>
         <input style="width: 100px;margin-left: 95px;" class="btn btn-primary" type="submit" value="Submit">
@@ -45,12 +63,33 @@
     var testEditor;
     $(function () {
         testEditor = editormd({
-            id: "deditor",//注意：这里是上面DIV的id
+            id: "editor",//注意：这里是上面DIV的id
             width: "90%",
             height: 640,
             syncScrolling: "single",
             path: "lib/",
         });
     });
+
+    $("#selectGroup").one('click',
+        function () {
+            $.ajax({
+                url: "/getGroup",
+                type: "get",
+                async: true,
+                success: function (getGroup) {
+                    var option = ""
+                    console.log(getGroup)
+                    for (let i = 0; i < getGroup.length; i++) {
+                        var group = getGroup[i].groupName
+                        console.log(group)
+                        $('#selectGroup').append(option = "<option value="+ group+">"+group+"</option>")
+                    }
+                }
+            })
+        }
+    )
+
+
 </script>
 </html>

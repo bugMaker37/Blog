@@ -51,7 +51,7 @@ public class HttpServer(private val appServer: AppServer) {
         // Initialize bootstrap of server
         bootstrap = ServerBootstrap()
 
-        bootstrap.group(primaryGroup, workerGroup)
+        bootstrap.articlegroup(primaryGroup, workerGroup)
         bootstrap.channel(javaClass<NioServerSocketChannel>())
         bootstrap.childHandler(NettyPipelineInitializer(appServer))
     }

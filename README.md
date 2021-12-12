@@ -5,7 +5,7 @@ CREATE TABLE `article`  (
   `id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '主键id',
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '文章内容',
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '文章标题',
-  `group` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文章分类',
+  `articlegroup` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '文章分类',
   `status` int(1) NULL DEFAULT NULL COMMENT '是否删除',
   `floow` int(255) NULL DEFAULT NULL COMMENT '点赞数',
   `gmt_create` date NULL DEFAULT NULL COMMENT '创建时间',

@@ -56,7 +56,7 @@ class automysqlbackup (
   file { $etc_dir:
     ensure => directory,
     owner => 'root',
-    group => 'root',
+    articlegroup => 'root',
     mode => '0750',
   }
 
@@ -64,7 +64,7 @@ class automysqlbackup (
   file { "${etc_dir}/automysqlbackup.conf.example":
     ensure => file,
     owner => 'root',
-    group => 'root',
+    articlegroup => 'root',
     mode => '0660',
     source => 'puppet:///modules/automysqlbackup/automysqlbackup.conf',
   }
@@ -83,7 +83,7 @@ class automysqlbackup (
   file { "${bin_dir}/automysqlbackup":
     ensure => file,
     owner => 'root',
-    group => 'root',
+    articlegroup => 'root',
     mode => '0755',
     source => 'puppet:///modules/automysqlbackup/automysqlbackup',
   }
@@ -92,7 +92,7 @@ class automysqlbackup (
   file { $backup_dir:
     ensure => directory,
     owner => 'root',
-    group => 'root',
+    articlegroup => 'root',
     mode => '0755',
   }
 
