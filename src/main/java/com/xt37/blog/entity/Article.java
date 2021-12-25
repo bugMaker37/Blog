@@ -42,6 +42,10 @@ public class Article implements Serializable {
     private Integer follow;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date gmtCreate;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date gmtModify;
+
+    public static void main(String[] args) {
+        System.out.println("hello Word");
+    }
 }

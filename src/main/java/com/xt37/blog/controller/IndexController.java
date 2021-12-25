@@ -20,6 +20,7 @@ public class IndexController {
     public String index(Model model) {
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("gmt_modify");
+        wrapper.eq("status",1);
         List<Article> articles = articleMapper.selectList(wrapper);
         model.addAttribute("articles", articles);
 
@@ -30,10 +31,12 @@ public class IndexController {
     public String indexController(Model model) throws Exception {
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("gmt_modify");
+        wrapper.eq("status",1);
         List<Article> articles = articleMapper.selectList(wrapper);
         model.addAttribute("articles", articles);
         return "index";
     }
+
 
 
 }

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -37,10 +38,10 @@ public class User implements Serializable {
 
     private Integer jurisdiction;
 
-    private Integer isDelete;
-
+    private Integer status;
+    @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date gmtCreate;
-
+    @DateTimeFormat(pattern = "yyy-MM-dd")
     private Date gmtModified;
 
 

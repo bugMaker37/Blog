@@ -3,6 +3,7 @@ package com.xt37.blog.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xt37.blog.entity.User;
 import com.xt37.blog.mapper.UserMapper;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +27,7 @@ public class LoginController {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("userName", user.getUserName());
         wrapper.eq("password", user.getPassword());
-        wrapper.eq("is_delete", 1);
+        wrapper.eq("status", 1);
         User selectOne = userMapper.selectOne(wrapper);
         if (selectOne != null) {
             Cookie cookie = new Cookie("user", user.getUserName() + user.getJurisdiction());
